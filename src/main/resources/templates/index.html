@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/styleIndex.css">
+    <title> Xinforinfola </title>
+</head>
+<body>
+	<div class="box-titulo">
+		<div class="titulo">
+			<h1> Itens Colecionaveis </h1>
+		</div>
+		<div class="titulo">
+			<h3> Adicionar Item: </h3>
+			
+			<input type="text" id="inputName" placeholder="Nome">
+			<input type="number" id="inputQuant" placeholder="Quantidade">
+			<input type="text" id="inputImg" placeholder="Img">
+			<img alt="" src="img/add.png" onclick="cadastrar()">	
+		</div>
+	</div>
+	
+
+	
+	<div class="container-itens">
+		<div th:each="itens:${itens}" class="box-item">
+			<img th:src="${itens.urlImg}" class="imgItem"> </img>
+			
+			<div class="inputBox">
+				<input type="number" id="txtId" th:value="${itens.id}" hidden>
+
+				<label for="txtNome"> Nome </label> <br>
+				<input type="text" id="txtNome" class="inputNome" th:value="${itens.nome}" readonly="readonly">
+			</div>
+			<div class="inputBox">
+				<label for=txtQuant> Quant </label> <br>
+				<input type="text" id="txtQuant" class="inputQuant" th:value="${itens.quantidade}" readonly="readonly">
+			</div>
+			<a th:href="@{'/remover/' + ${itens.id}}" class="hrefImg"><img src="/img/trash.png"></a>
+			<a th:href="@{'/indexUpdate/' + ${itens.id}}" class="hrefImg"><img src="/img/refresh.png"></a>
+		</div>
+	</div>
+
+	
+	
+	
+<!-- <div class="container-formInputs">
+        <h2 class="h2Titulo">Adicione itens a sua coleção</h2>
+        <form action="#">
+            <div class="boxInputs">
+                <label for="inputName"> Nome do Item: </label> <br>
+                <input type="text" name="inputName" id="inputName">
+            </div>
+            <div class="boxInputs">
+                <label for="inputQuant"> Quantidade do Item: </label> <br>
+                <input type="number" name="inputQuant" id="inputQuant">
+            </div>
+
+            <div class="boxInputs">
+                <label for="inputImg"> IMG do Item: </label> <br>
+                <input type="text" name="inputImg" id="inputImg">
+            </div>
+
+            <div class="boxInputs">
+                <button type="button" name="inputSubmit" id="inputSubmit" onclick="cadastrar()"> enviar </button>
+            </div>
+
+        </form>
+    </div> -->
+    <script src="/itemCadastro.js"></script>
+</body>
+</html>
